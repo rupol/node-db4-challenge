@@ -44,6 +44,18 @@ server.get("/api/recipes/:id/instructions", (req, res) => {
     });
 });
 
+server.get("/api/ingredients/:id/recipes", (req, res) => {
+  const { id } = req.params;
+  recipes
+    .getIngredientRecipes(id)
+    .then(recipes => {
+      res.json(recipes);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 server.use((req, res) => {
   res.status(404).json({
     message: "Route was not found"
