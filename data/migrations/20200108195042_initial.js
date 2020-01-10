@@ -2,7 +2,8 @@ exports.up = async function(knex) {
   await knex.schema.createTable("recipes", table => {
     table.increments("id");
     table.string("name").notNullable();
-    table.integer("calories");
+    table.integer("servings").notNullable();
+    table.integer("calories_per_serving");
     table.string("diet_type");
   });
 
